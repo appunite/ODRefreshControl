@@ -29,7 +29,6 @@
 @interface ODRefreshControl ()
 
 @property (nonatomic, readwrite) BOOL refreshing;
-@property (nonatomic, assign) UIScrollView *scrollView;
 @property (nonatomic, assign) UIEdgeInsets originalContentInset;
 
 @end
@@ -56,7 +55,7 @@ static inline CGFloat lerp(CGFloat a, CGFloat b, CGFloat p)
     self = [super initWithFrame:CGRectMake(0, -(kTotalViewHeight + scrollView.contentInset.top), scrollView.frame.size.width, kTotalViewHeight)];
     
     if (self) {
-        self.scrollView = scrollView;
+        _scrollView = scrollView;
         self.originalContentInset = scrollView.contentInset;
         
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -108,7 +107,7 @@ static inline CGFloat lerp(CGFloat a, CGFloat b, CGFloat p)
 {
     [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
     [self.scrollView removeObserver:self forKeyPath:@"contentInset"];
-    self.scrollView = nil;
+    _scrollView = nil;
 }
 
 - (void)setEnabled:(BOOL)enabled
@@ -123,7 +122,7 @@ static inline CGFloat lerp(CGFloat a, CGFloat b, CGFloat p)
     if (!newSuperview) {
         [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
         [self.scrollView removeObserver:self forKeyPath:@"contentInset"];
-        self.scrollView = nil;
+        _scrollView = nil;
     }
 }
 

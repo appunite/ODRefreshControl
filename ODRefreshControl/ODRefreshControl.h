@@ -25,6 +25,7 @@
     CGFloat _lastOffset;
 }
 
+@property (nonatomic, assign, readonly) UIScrollView *scrollView;
 @property (nonatomic, readonly, getter = isRefreshing) BOOL refreshing;
 @property (nonatomic, strong) UIColor *tintColor;
 @property (nonatomic, assign) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
